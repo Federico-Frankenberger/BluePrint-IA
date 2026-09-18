@@ -1,0 +1,10 @@
+{
+  "diagrams": [
+    { "file": "diagrams/use-case.mmd", "type": "use-case", "sources": ["HU-01", "HU-02", "HU-03", "HU-04", "HU-05", "HU-06"] },
+    { "file": "diagrams/pedido-state.mmd", "type": "state", "sources": ["RF-01", "RF-02", "RF-04", "RF-05"] }
+  ],
+  "blocked": [
+    { "type": "class", "status": "blocked", "reason": "entity attributes for Pedido/Producto/Cliente not confirmed in discovery-state.json" },
+    { "type": "erd", "status": "blocked", "reason": "cardinalidades entre Pedido/Producto/Cliente no confirmadas en discovery-state.json" }
+  ]
+}

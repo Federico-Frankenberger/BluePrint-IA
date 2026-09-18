@@ -1,0 +1,19 @@
+{
+  "in_scope": [
+    { "item": "Crear pedido", "prd_source": "proceso: Crear pedido", "hu_refs": ["HU-01"], "has_open_items": true },
+    { "item": "Modificar pedido", "prd_source": "proceso: Modificar pedido", "hu_refs": ["HU-02"], "has_open_items": false },
+    { "item": "Un vendedor solo puede modificar sus propios pedidos", "prd_source": "RN-01", "hu_refs": ["HU-03"], "has_open_items": false },
+    { "item": "Un pedido aprobado no puede modificarse", "prd_source": "RN-02", "hu_refs": ["HU-04"], "has_open_items": false },
+    { "item": "Aprobar pedido", "prd_source": "proceso: Aprobar pedido", "hu_refs": ["HU-05"], "has_open_items": false },
+    { "item": "Consultar pedidos", "prd_source": "proceso: Consultar pedidos", "hu_refs": ["HU-06"], "has_open_items": false }
+  ],
+  "out_of_scope": [
+    { "item": "Integración con sistemas ERP", "reason": "RN-03: el cliente pidió explícitamente no integrar con ningún ERP por el momento." },
+    { "item": "Facturación electrónica", "reason": "RN-04: el cliente indicó que queda para una fase futura, fuera de este proyecto." }
+  ],
+  "to_define": [
+    { "source": "HU-01.open_questions", "reason": "¿Qué debe suceder si el producto solicitado no tiene stock? — sin resolver." },
+    { "source": "uml-state.json.blocked (class)", "reason": "Atributos de Pedido/Producto/Cliente no confirmados." },
+    { "source": "uml-state.json.blocked (erd)", "reason": "Cardinalidades entre Pedido/Producto/Cliente no confirmadas." }
+  ]
+}

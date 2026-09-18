@@ -1,0 +1,10 @@
+flowchart TD
+  Kiosquero((Kiosquero))
+  Proveedor((Proveedor))
+  UC1[Ver productos bajo el mínimo]
+  UC2[Generar pedido al proveedor]
+  UC3[Recibir alerta de stock bajo]
+  Kiosquero --> UC1
+  Kiosquero --> UC2
+  Kiosquero --> UC3
+  UC2 --> Proveedor

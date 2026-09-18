@@ -1,0 +1,77 @@
+{
+  "stories": [
+    {
+      "id": "HU-01",
+      "actor": "Vendedor",
+      "action": "registrar un pedido",
+      "benefit": "enviarlo a administración para su aprobación",
+      "acceptance_criteria": [
+        { "given": "un vendedor autenticado", "when": "completa los datos obligatorios del pedido y lo confirma", "then": "el sistema registra el pedido y lo asigna al vendedor actual" }
+      ],
+      "source": "RF-01",
+      "open_questions": [
+        {
+          "id": "HU-01-OQ-01",
+          "question": "¿Qué debe suceder si el producto solicitado no tiene stock? (sin resolver en discovery-state.json)",
+          "item_ref": "HU-01"
+        }
+      ]
+    },
+    {
+      "id": "HU-02",
+      "actor": "Vendedor",
+      "action": "modificar un pedido existente",
+      "benefit": "corregir datos antes de que sea aprobado",
+      "acceptance_criteria": [
+        { "given": "un pedido propio no aprobado", "when": "el vendedor edita sus datos", "then": "el sistema guarda los cambios" }
+      ],
+      "source": "RF-02",
+      "open_questions": []
+    },
+    {
+      "id": "HU-03",
+      "actor": "Vendedor",
+      "action": "que el sistema impida modificar pedidos de otros vendedores",
+      "benefit": "asegurar que cada vendedor solo controle sus propios pedidos",
+      "acceptance_criteria": [
+        { "given": "un pedido que pertenece a otro vendedor", "when": "un vendedor intenta modificarlo", "then": "el sistema rechaza la operación" }
+      ],
+      "source": "RF-03",
+      "open_questions": []
+    },
+    {
+      "id": "HU-04",
+      "actor": "Vendedor",
+      "action": "que el sistema impida modificar un pedido ya aprobado",
+      "benefit": "mantener la integridad de los pedidos ya validados por administración",
+      "acceptance_criteria": [
+        { "given": "un pedido con estado aprobado", "when": "el vendedor intenta modificarlo", "then": "el sistema rechaza la operación" }
+      ],
+      "source": "RF-04",
+      "open_questions": []
+    },
+    {
+      "id": "HU-05",
+      "actor": "Administrador",
+      "action": "aprobar un pedido pendiente",
+      "benefit": "habilitar su procesamiento",
+      "acceptance_criteria": [
+        { "given": "un pedido en estado pendiente", "when": "el administrador lo aprueba", "then": "el sistema marca el pedido como aprobado y lo bloquea para edición" }
+      ],
+      "source": "RF-05",
+      "open_questions": []
+    },
+    {
+      "id": "HU-06",
+      "actor": "Administración",
+      "action": "consultar el listado de pedidos",
+      "benefit": "tener visibilidad del estado general de los pedidos",
+      "acceptance_criteria": [
+        { "given": "administración autenticada", "when": "accede al listado de pedidos", "then": "el sistema muestra todos los pedidos con su estado actual" }
+      ],
+      "source": "RF-06",
+      "open_questions": []
+    }
+  ],
+  "skipped": []
+}

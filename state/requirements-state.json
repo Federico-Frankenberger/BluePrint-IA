@@ -1,0 +1,16 @@
+{
+  "requirements": [
+    { "id": "RF-01", "type": "RF", "text": "El sistema deberá permitir a un vendedor crear un pedido especificando productos y cantidades.", "source": "proceso: Crear pedido", "status": "confirmed" },
+    { "id": "RF-02", "type": "RF", "text": "El sistema deberá permitir modificar un pedido existente.", "source": "proceso: Modificar pedido", "status": "confirmed" },
+    { "id": "RF-03", "type": "RF", "text": "El sistema deberá restringir la modificación de un pedido únicamente al vendedor que lo creó.", "source": "RN-01", "status": "confirmed" },
+    { "id": "RF-04", "type": "RF", "text": "El sistema deberá impedir la modificación de un pedido una vez que fue aprobado.", "source": "RN-02", "status": "confirmed" },
+    { "id": "RF-05", "type": "RF", "text": "El sistema deberá permitir a un administrador aprobar un pedido pendiente.", "source": "proceso: Aprobar pedido", "status": "confirmed" },
+    { "id": "RF-06", "type": "RF", "text": "El sistema deberá permitir a administración consultar el listado de pedidos.", "source": "proceso: Consultar pedidos", "status": "confirmed" }
+  ],
+  "rejected": [
+    { "source": "RN-03", "status": "rejected", "reason": "prd_out_of_scope: Integración con sistemas ERP" },
+    { "source": "RN-04", "status": "rejected", "reason": "prd_out_of_scope: Facturación electrónica" }
+  ],
+  "blocked": [],
+  "open_questions": []
+}

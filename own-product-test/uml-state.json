@@ -1,0 +1,10 @@
+{
+  "diagrams": [
+    { "id": "UC-01", "type": "use-case", "status": "confirmed", "file": "diagrams/use-case.mmd", "source": ["HU-01", "HU-02", "HU-03"] }
+  ],
+  "blocked": [
+    { "type": "class-diagram", "status": "blocked", "reason": "No hay cardinalidades ni atributos de entidades confirmados todavía (ej. Producto, Pedido) para modelar clases." },
+    { "type": "erd", "status": "blocked", "reason": "Mismo motivo que class-diagram: no hay modelo de datos confirmado en discovery/requirements todavía." }
+  ],
+  "open_questions": []
+}

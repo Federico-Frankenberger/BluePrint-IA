@@ -1,0 +1,12 @@
+%% source: HU-01, HU-02, HU-03, HU-04, HU-05, HU-06
+graph LR
+  Vendedor((Vendedor))
+  Administrador((Administrador))
+  Administracion((Administración))
+
+  Vendedor --> UC1[Registrar pedido]
+  Vendedor --> UC2[Modificar pedido]
+  UC2 -.restringido por.-> UC3[No modificar pedido de otro vendedor]
+  UC2 -.restringido por.-> UC4[No modificar pedido aprobado]
+  Administrador --> UC5[Aprobar pedido]
+  Administracion --> UC6[Consultar listado de pedidos]

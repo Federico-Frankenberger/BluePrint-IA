@@ -1,0 +1,20 @@
+{
+  "change_requests": [
+    {
+      "id": "CR-01",
+      "description": "string",
+      "requested_at": "string (ISO date)",
+      "contradicts_out_of_scope": true,
+      "prd_out_of_scope_entry": "string or null",
+      "affected_items": {
+        "prd": ["string"],
+        "requirements": ["string"],
+        "user_stories": ["string"],
+        "uml": ["string"],
+        "estimation": ["string"],
+        "proposal": ["string"]
+      },
+      "status": "pending_quote | rejected"
+    }
+  ]
+}

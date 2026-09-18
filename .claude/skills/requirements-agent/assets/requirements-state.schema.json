@@ -1,0 +1,28 @@
+{
+  "requirements": [
+    {
+      "id": "RF-01",
+      "type": "RF | RNF",
+      "text": "string",
+      "source": "RN-01 | proceso: Cargar pedido",
+      "status": "confirmed"
+    }
+  ],
+  "rejected": [
+    {
+      "source": "RN-03",
+      "status": "rejected",
+      "reason": "prd_out_of_scope: <item>"
+    }
+  ],
+  "blocked": [
+    {
+      "source": "RN-02",
+      "status": "blocked",
+      "reason": "upstream rule still pending_clarification"
+    }
+  ],
+  "open_questions": [
+    { "id": "OQ-01", "question": "string", "item_ref": "RN-02" }
+  ]
+}

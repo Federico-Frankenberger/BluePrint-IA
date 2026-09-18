@@ -1,0 +1,17 @@
+{
+  "story_estimates": [
+    {
+      "source": "HU-01",
+      "tasks": [
+        { "area": "backend | api | db | frontend | auth | testing", "complexity": "low | medium | high" }
+      ],
+      "assumptions": ["string"]
+    }
+  ],
+  "global_assumptions": ["string"],
+  "preliminary_estimate": {
+    "duration_weeks": { "min": 0, "max": 0 },
+    "team": "string",
+    "uncertainty": "low | medium | high"
+  }
+}

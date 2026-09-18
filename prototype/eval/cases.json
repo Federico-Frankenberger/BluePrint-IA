@@ -1,0 +1,56 @@
+[
+  {
+    "id": "case_01_baseline_no_conflict",
+    "tags": ["no_contradiction"],
+    "turns": [
+      "Necesito un sistema para que mis vendedores puedan cargar pedidos desde el celular y que administración pueda verlos.",
+      "Los vendedores pueden modificar cualquier pedido."
+    ],
+    "expected_contradiction": false
+  },
+  {
+    "id": "case_02_implicit_conflict",
+    "tags": ["contradiction", "implicit"],
+    "turns": [
+      "Los vendedores pueden modificar cualquier pedido.",
+      "Una vez aprobado, el pedido queda cerrado."
+    ],
+    "expected_contradiction": true
+  },
+  {
+    "id": "case_03_scope_exception",
+    "tags": ["contradiction", "ambiguous_scope"],
+    "turns": [
+      "Un cliente puede tener como máximo 3 pedidos activos al mismo tiempo.",
+      "Los clientes VIP pueden tener pedidos ilimitados."
+    ],
+    "expected_contradiction": true
+  },
+  {
+    "id": "case_04_pure_addition",
+    "tags": ["no_contradiction"],
+    "turns": [
+      "Los pedidos pueden pagarse con tarjeta de crédito.",
+      "También vamos a aceptar transferencia bancaria."
+    ],
+    "expected_contradiction": false
+  },
+  {
+    "id": "case_05_explicit_correction",
+    "tags": ["contradiction", "explicit"],
+    "turns": [
+      "El stock se descuenta cuando se confirma el pedido.",
+      "En realidad, el stock se descuenta recién cuando se despacha el pedido, no antes."
+    ],
+    "expected_contradiction": true
+  },
+  {
+    "id": "case_06_state_machine_conflict",
+    "tags": ["contradiction", "implicit"],
+    "turns": [
+      "Los pedidos rechazados se pueden volver a enviar para aprobación.",
+      "Un pedido rechazado queda descartado definitivamente y hay que crear uno nuevo."
+    ],
+    "expected_contradiction": true
+  }
+]

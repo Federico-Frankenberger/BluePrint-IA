@@ -1,0 +1,27 @@
+{
+  "user_stories": [
+    {
+      "id": "HU-01",
+      "source": "RF-01",
+      "title": "Ver productos por debajo del mínimo",
+      "gherkin": "Given un kiosquero autenticado\nWhen abre la vista de stock\nThen el sistema debe mostrar los productos cuyo stock está debajo del mínimo configurado",
+      "status": "confirmed"
+    },
+    {
+      "id": "HU-02",
+      "source": "RF-02",
+      "title": "Generar pedido al proveedor",
+      "gherkin": "Given una lista de productos faltantes\nWhen el kiosquero confirma el pedido\nThen el sistema debe generar el pedido con esos productos para el proveedor",
+      "status": "confirmed"
+    },
+    {
+      "id": "HU-03",
+      "source": "RF-03",
+      "title": "Alertar stock bajo",
+      "gherkin": "Given un producto con stock configurado\nWhen el stock cae debajo del mínimo\nThen el sistema debe notificar al kiosquero",
+      "status": "confirmed"
+    }
+  ],
+  "skipped": [],
+  "open_questions": []
+}

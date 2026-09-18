@@ -1,0 +1,17 @@
+{
+  "engagement_type": "client | own_product",
+  "stakeholders": ["string"],
+  "processes": ["string"],
+  "business_rules": [
+    {
+      "id": "RN-01",
+      "text": "string",
+      "source_turn": 1,
+      "stated_by": "string (stakeholder role from `stakeholders`) | null",
+      "status": "confirmed | pending_clarification"
+    }
+  ],
+  "open_questions": [
+    { "id": "OQ-01", "question": "string", "item_ref": "RN-01 | proceso: Crear pedido | null" }
+  ]
+}

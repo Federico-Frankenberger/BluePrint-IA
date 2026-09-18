@@ -1,0 +1,42 @@
+{
+  "engagement_type": "own_product",
+  "stakeholders": ["Kiosquero", "Proveedor"],
+  "processes": ["Reponer stock", "Pedir mercadería al proveedor"],
+  "business_rules": [
+    {
+      "id": "RN-01",
+      "text": "Los kiosqueros pierden ventas por no reponer stock a tiempo.",
+      "source_turn": 1,
+      "stated_by": "Fundador",
+      "status": "pending_clarification"
+    },
+    {
+      "id": "RN-02",
+      "text": "Hoy los kiosqueros reponen stock revisando la góndola manualmente y piden mercadería por WhatsApp al proveedor.",
+      "source_turn": 2,
+      "stated_by": "Fundador",
+      "status": "confirmed"
+    },
+    {
+      "id": "RN-03",
+      "text": "El sistema debe alertar al kiosquero cuando el stock de un producto cae debajo de un mínimo configurado.",
+      "source_turn": 3,
+      "stated_by": "Fundador",
+      "status": "confirmed"
+    },
+    {
+      "id": "RN-04",
+      "text": "Por ahora el sistema no va a manejar múltiples sucursales por kiosco; eso queda para una fase futura.",
+      "source_turn": 4,
+      "stated_by": "Fundador",
+      "status": "confirmed"
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "OQ-01",
+      "question": "¿Qué evidencia tenés de que los kiosqueros efectivamente pierden ventas por falta de stock — encuestas, entrevistas, algún dato concreto? Sin esa validación, esto queda como supuesto sin validar, no como hecho confirmado.",
+      "item_ref": "RN-01"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "engagement_type": "client",
+  "vision": "Plataforma que permite a los vendedores registrar pedidos desde el celular y a administración verlos, gestionarlos y aprobarlos desde un panel centralizado.",
+  "objectives": [
+    "Digitalizar la carga de pedidos por parte de los vendedores, eliminando el registro manual.",
+    "Centralizar en administración la visibilidad y aprobación de todos los pedidos."
+  ],
+  "personas": [
+    { "id": "PER-01", "name": "Administrador", "source": "stakeholder: Administrador" },
+    { "id": "PER-02", "name": "Vendedor", "source": "stakeholder: Vendedor" },
+    { "id": "PER-03", "name": "Administración", "source": "stakeholder: Administración" }
+  ],
+  "in_scope": [
+    { "item": "Un vendedor solo puede modificar sus propios pedidos", "source": "RN-01" },
+    { "item": "Un pedido aprobado no puede modificarse", "source": "RN-02" },
+    { "item": "Crear pedido", "source": "proceso: Crear pedido" },
+    { "item": "Modificar pedido", "source": "proceso: Modificar pedido" },
+    { "item": "Aprobar pedido", "source": "proceso: Aprobar pedido" },
+    { "item": "Consultar pedidos", "source": "proceso: Consultar pedidos" }
+  ],
+  "out_of_scope": [
+    { "item": "Integración con sistemas ERP", "reason": "RN-03: el cliente pidió explícitamente no integrar con ningún ERP por el momento." },
+    { "item": "Facturación electrónica", "reason": "RN-04: el cliente indicó que queda para una fase futura, fuera de este proyecto." }
+  ],
+  "success_criteria": [
+    "Un vendedor puede cargar un pedido completo desde el celular sin intervención de administración.",
+    "Administración puede ver y aprobar pedidos desde un panel centralizado.",
+    "Ningún vendedor puede modificar pedidos ajenos ni pedidos ya aprobados (RN-01, RN-02)."
+  ],
+  "open_questions": [
+    {
+      "id": "OQ-01",
+      "question": "¿Qué debe suceder si un vendedor carga un pedido de un producto que no tiene stock? (heredado de discovery-state.json, sin resolver)",
+      "item_ref": "proceso: Crear pedido"
+    }
+  ]
+}

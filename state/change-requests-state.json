@@ -1,0 +1,20 @@
+{
+  "change_requests": [
+    {
+      "id": "CR-01",
+      "description": "El cliente, después de la propuesta aprobada, pide integración automática con el sistema ERP para sincronizar los pedidos.",
+      "requested_at": "2026-09-17",
+      "contradicts_out_of_scope": true,
+      "prd_out_of_scope_entry": "Integración con sistemas ERP (RN-03: el cliente pidió explícitamente no integrar con ningún ERP por el momento.)",
+      "affected_items": {
+        "prd": ["Integración con sistemas ERP (via RN-03)"],
+        "requirements": ["entrada asociada a RN-03 (via RN-03)"],
+        "user_stories": [],
+        "uml": [],
+        "estimation": [],
+        "proposal": ["Integración con sistemas ERP (via RN-03)"]
+      },
+      "status": "pending_quote"
+    }
+  ]
+}

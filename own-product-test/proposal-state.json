@@ -1,0 +1,16 @@
+{
+  "engagement_type": "own_product",
+  "in_scope": [
+    { "item": "Reponer stock", "prd_source": "proceso: Reponer stock", "hu_refs": ["HU-01"], "has_open_items": false },
+    { "item": "Pedir mercadería al proveedor", "prd_source": "proceso: Pedir mercadería al proveedor", "hu_refs": ["HU-02"], "has_open_items": false },
+    { "item": "Alertar cuando el stock de un producto cae debajo de un mínimo configurado", "prd_source": "RN-03", "hu_refs": ["HU-03"], "has_open_items": false }
+  ],
+  "out_of_scope": [
+    { "item": "Múltiples sucursales por kiosco", "reason": "El fundador indicó que queda para una fase futura (RN-04)." }
+  ],
+  "to_define": [
+    { "source": "PRD OQ-01 (Discovery RN-01)", "reason": "Sin evidencia de que los kiosqueros pierdan ventas por falta de stock — supuesto central sin validar." },
+    { "source": "UML class-diagram", "reason": "Blocked: no hay modelo de datos (Producto/Pedido) confirmado todavía." },
+    { "source": "UML ERD", "reason": "Blocked: mismo motivo, falta modelo de datos confirmado." }
+  ]
+}

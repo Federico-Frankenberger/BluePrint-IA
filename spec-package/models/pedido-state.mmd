@@ -1,0 +1,6 @@
+%% source: RF-01, RF-02, RF-04, RF-05
+stateDiagram-v2
+  [*] --> Pendiente : RF-01 (crear pedido)
+  Pendiente --> Pendiente : RF-02 (modificar pedido)
+  Pendiente --> Aprobado : RF-05 (aprobar pedido)
+  Aprobado --> Aprobado : RF-04 (modificación rechazada)

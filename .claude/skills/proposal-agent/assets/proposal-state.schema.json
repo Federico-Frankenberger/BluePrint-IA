@@ -1,0 +1,16 @@
+{
+  "in_scope": [
+    {
+      "item": "string",
+      "prd_source": "RN-01 | proceso: Crear pedido",
+      "hu_refs": ["HU-01"],
+      "has_open_items": true
+    }
+  ],
+  "out_of_scope": [
+    { "item": "string", "reason": "string" }
+  ],
+  "to_define": [
+    { "source": "string", "reason": "string" }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "stories": [
+    {
+      "id": "HU-01",
+      "actor": "Vendedor",
+      "action": "string",
+      "benefit": "string",
+      "acceptance_criteria": [
+        { "given": "string", "when": "string", "then": "string" }
+      ],
+      "source": "RF-01",
+      "open_questions": [
+        { "id": "HU-01-OQ-01", "question": "string", "item_ref": "HU-01" }
+      ]
+    }
+  ],
+  "skipped": [
+    { "source": "RNF-01", "reason": "non-functional" }
+  ]
+}

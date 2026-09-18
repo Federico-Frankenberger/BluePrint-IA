@@ -1,0 +1,15 @@
+# Design notes (kept local, not published)
+ingenieria_requerimientos_agentica.md
+
+# Tooling cache
+.atl/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db

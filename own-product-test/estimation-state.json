@@ -1,0 +1,9 @@
+{
+  "duration_range": "3-5 semanas",
+  "team": "1 desarrollador full-time",
+  "uncertainty": "Medio",
+  "assumptions": [
+    "No hay validación externa de que los kiosqueros efectivamente pierden ventas por falta de stock (Discovery RN-01, PRD OQ-01) — si esto no se confirma, el problema central del producto sigue sin evidencia.",
+    "No hay modelo de datos confirmado todavía (class-diagram y ERD quedaron blocked en UML) — la estimación no incluye el diseño del modelo de Producto/Pedido, que falta definir."
+  ]
+}

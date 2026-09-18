@@ -1,0 +1,16 @@
+{
+  "diagrams": [
+    {
+      "file": "diagrams/use-case.mmd",
+      "type": "use-case",
+      "sources": ["HU-01", "HU-02"]
+    }
+  ],
+  "blocked": [
+    {
+      "type": "class",
+      "status": "blocked",
+      "reason": "entity attributes for Pedido/Producto/Cliente not confirmed in state/discovery-state.json"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "engagement_type": "client | own_product",
+  "vision": "string",
+  "objectives": ["string"],
+  "personas": [
+    {
+      "id": "PER-01",
+      "name": "string",
+      "source": "stakeholder: Vendedor"
+    }
+  ],
+  "in_scope": [
+    {
+      "item": "string",
+      "source": "RN-01 | proceso: Crear pedido"
+    }
+  ],
+  "out_of_scope": [
+    {
+      "item": "string",
+      "reason": "string"
+    }
+  ],
+  "success_criteria": ["string"],
+  "open_questions": [
+    { "id": "OQ-01", "question": "string", "item_ref": "RN-01 | proceso: Crear pedido | null" }
+  ]
+}

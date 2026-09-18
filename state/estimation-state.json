@@ -1,0 +1,72 @@
+{
+  "story_estimates": [
+    {
+      "source": "HU-01",
+      "tasks": [
+        { "area": "backend", "complexity": "medium" },
+        { "area": "api", "complexity": "medium" },
+        { "area": "db", "complexity": "medium" },
+        { "area": "frontend", "complexity": "medium" },
+        { "area": "testing", "complexity": "medium" }
+      ],
+      "assumptions": ["Comportamiento ante falta de stock no definido (open question de la historia)."]
+    },
+    {
+      "source": "HU-02",
+      "tasks": [
+        { "area": "backend", "complexity": "low" },
+        { "area": "api", "complexity": "low" },
+        { "area": "frontend", "complexity": "low" },
+        { "area": "testing", "complexity": "low" }
+      ],
+      "assumptions": []
+    },
+    {
+      "source": "HU-03",
+      "tasks": [
+        { "area": "backend", "complexity": "low" },
+        { "area": "auth", "complexity": "medium" },
+        { "area": "testing", "complexity": "low" }
+      ],
+      "assumptions": []
+    },
+    {
+      "source": "HU-04",
+      "tasks": [
+        { "area": "backend", "complexity": "low" },
+        { "area": "testing", "complexity": "low" }
+      ],
+      "assumptions": []
+    },
+    {
+      "source": "HU-05",
+      "tasks": [
+        { "area": "backend", "complexity": "medium" },
+        { "area": "api", "complexity": "low" },
+        { "area": "frontend", "complexity": "low" },
+        { "area": "auth", "complexity": "medium" },
+        { "area": "testing", "complexity": "medium" }
+      ],
+      "assumptions": []
+    },
+    {
+      "source": "HU-06",
+      "tasks": [
+        { "area": "backend", "complexity": "low" },
+        { "area": "api", "complexity": "low" },
+        { "area": "frontend", "complexity": "medium" },
+        { "area": "testing", "complexity": "low" }
+      ],
+      "assumptions": []
+    }
+  ],
+  "global_assumptions": [
+    "Comportamiento ante producto sin stock no está definido (discovery-state.json.open_questions).",
+    "Atributos y cardinalidades de Pedido/Producto/Cliente no confirmados — diagrama de clases y ERD quedaron bloqueados (uml-state.json.blocked)."
+  ],
+  "preliminary_estimate": {
+    "duration_weeks": { "min": 5, "max": 8 },
+    "team": "1-2 desarrolladores + QA parcial",
+    "uncertainty": "medium"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "engagement_type": "own_product",
+  "vision": "Una plataforma para que los kiosqueros repongan stock más rápido: el sistema alerta automáticamente cuándo un producto cae debajo de un mínimo configurado y facilita el pedido al proveedor, en vez de depender del control manual de góndola que se usa hoy.",
+  "objectives": [
+    "Reducir el tiempo que le toma a un kiosquero detectar que un producto necesita reposición.",
+    "Simplificar el paso de pedir mercadería al proveedor una vez detectado el faltante."
+  ],
+  "personas": [
+    { "id": "PER-01", "name": "Kiosquero", "source": "stakeholder: Kiosquero" },
+    { "id": "PER-02", "name": "Proveedor", "source": "stakeholder: Proveedor" }
+  ],
+  "in_scope": [
+    { "item": "Reponer stock", "source": "proceso: Reponer stock" },
+    { "item": "Pedir mercadería al proveedor", "source": "proceso: Pedir mercadería al proveedor" },
+    { "item": "Alertar cuando el stock de un producto cae debajo de un mínimo configurado", "source": "RN-03" }
+  ],
+  "out_of_scope": [
+    { "item": "Múltiples sucursales por kiosco", "reason": "El fundador indicó que queda para una fase futura (RN-04)." }
+  ],
+  "success_criteria": [
+    "El kiosquero recibe una alerta antes de quedarse sin stock de un producto.",
+    "El tiempo para detectar y pedir un faltante es menor que con el proceso manual actual (RN-02)."
+  ],
+  "open_questions": [
+    {
+      "id": "OQ-01",
+      "question": "¿Qué evidencia tenés de que los kiosqueros efectivamente pierden ventas por falta de stock — encuestas, entrevistas, algún dato concreto? Sigue sin validar (Discovery RN-01), así que no entra en Visión/Objetivos como hecho confirmado.",
+      "item_ref": "RN-01"
+    }
+  ]
+}

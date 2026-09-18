@@ -1,0 +1,53 @@
+{
+  "stakeholders": ["Administrador", "Vendedor", "Administración"],
+  "processes": ["Crear pedido", "Modificar pedido", "Aprobar pedido", "Consultar pedidos"],
+  "business_rules": [
+    {
+      "id": "RN-01",
+      "text": "Un vendedor solo puede modificar sus propios pedidos.",
+      "source_turn": 1,
+      "stated_by": null,
+      "status": "pending_clarification"
+    },
+    {
+      "id": "RN-02",
+      "text": "Un pedido aprobado no puede modificarse.",
+      "source_turn": 1,
+      "stated_by": null,
+      "status": "confirmed"
+    },
+    {
+      "id": "RN-03",
+      "text": "El sistema no debe integrarse con ningún ERP por el momento.",
+      "source_turn": 1,
+      "stated_by": null,
+      "status": "confirmed"
+    },
+    {
+      "id": "RN-04",
+      "text": "La facturación electrónica queda fuera de este proyecto; se evaluará en una fase futura.",
+      "source_turn": 1,
+      "stated_by": null,
+      "status": "confirmed"
+    },
+    {
+      "id": "RN-05",
+      "text": "El vendedor debería poder modificar cualquier pedido del equipo, no solo los propios, para cubrir a compañeros ausentes.",
+      "source_turn": 2,
+      "stated_by": "Vendedor",
+      "status": "pending_clarification"
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "OQ-01",
+      "question": "¿Qué debe suceder si un vendedor carga un pedido de un producto que no tiene stock?",
+      "item_ref": "proceso: Crear pedido"
+    },
+    {
+      "id": "OQ-02",
+      "question": "Conflicto entre stakeholders: el Vendedor pidió poder modificar cualquier pedido del equipo para cubrir compañeros ausentes (RN-05), lo que contradice RN-01 (\"un vendedor solo puede modificar sus propios pedidos\"), ya confirmada previamente por otro interlocutor no registrado en ese momento. ¿Cuál de las dos reglas aplica: la restricción original (RN-01) o la ampliación pedida por el Vendedor (RN-05)?",
+      "item_ref": "RN-01"
+    }
+  ]
+}

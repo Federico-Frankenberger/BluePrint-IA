@@ -1,0 +1,14 @@
+{
+  "generated_by": "spec-package-agent/scripts/assemble-spec-package.sh",
+  "generated_at": "2026-09-17T04:42:16Z",
+  "sources": [
+    { "skill": "discovery-agent", "schema": "../.claude/skills/discovery-agent/assets/discovery-state.schema.json", "produces": ["requirements/business-rules.md"] },
+    { "skill": "prd-agent", "schema": "../.claude/skills/prd-agent/assets/prd-state.schema.json", "produces": ["product/prd.md", "product/personas.md"] },
+    { "skill": "requirements-agent", "schema": "../.claude/skills/requirements-agent/assets/requirements-state.schema.json", "produces": ["requirements/functional.md", "requirements/non-functional.md"] },
+    { "skill": "user-stories-agent", "schema": "../.claude/skills/user-stories-agent/assets/user-stories-state.schema.json", "produces": ["user-stories/*.md", "acceptance/acceptance-criteria.md"] },
+    { "skill": "uml-agent", "schema": "../.claude/skills/uml-agent/assets/uml-state.schema.json", "produces": ["models/*.mmd"] },
+    { "skill": "estimation-agent", "schema": "../.claude/skills/estimation-agent/assets/estimation-state.schema.json", "produces": ["estimation/estimate.md"] },
+    { "skill": "proposal-agent", "schema": "../.claude/skills/proposal-agent/assets/proposal-state.schema.json", "produces": ["proposal/commercial-proposal.md"] }
+  ],
+  "not_backed": ["architecture/ -- ningún agente produce ADRs todavía, carpeta deliberadamente omitida"]
+}

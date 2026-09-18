@@ -1,0 +1,10 @@
+{
+  "requirements": [
+    { "id": "RF-01", "type": "RF", "text": "El sistema deberá permitir al kiosquero ver qué productos están debajo del mínimo configurado y necesitan reposición.", "source": "proceso: Reponer stock", "status": "confirmed" },
+    { "id": "RF-02", "type": "RF", "text": "El sistema deberá permitir generar un pedido de mercadería al proveedor a partir de los productos faltantes.", "source": "proceso: Pedir mercadería al proveedor", "status": "confirmed" },
+    { "id": "RF-03", "type": "RF", "text": "El sistema deberá alertar al kiosquero cuando el stock de un producto caiga debajo del mínimo configurado.", "source": "RN-03", "status": "confirmed" }
+  ],
+  "rejected": [],
+  "blocked": [],
+  "open_questions": []
+}
