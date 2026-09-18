@@ -1,5 +1,3 @@
-# BluePrint-IA
-
 <img width="100%" alt="BluePrint-IA" src="assets/BlurePrint_IA_img.jpg" />
 
 **Un pipeline multi-agente que convierte una conversación informal con un cliente en un conjunto estructurado y trazable de artefactos de ingeniería de software — y se lo entrega a cualquier motor de Spec-Driven Development (SDD).**
