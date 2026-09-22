@@ -288,9 +288,26 @@ fi
 
 # ============================================================
 # manifest.json -- index of skill schemas -> spec-package files they back
+#
+# contract_version: bump whenever the shape of this file changes (a new
+# top-level key, a changed folder layout) so an external consumer (any SDD
+# reading this cold) can detect drift instead of silently mis-parsing it.
+#
+# exclusion_summary: the same per-file counts this script prints to stdout
+# (SUMMARY array), persisted here too. Printing them to chat only means an
+# external SDD reading manifest.json outside this session never sees them --
+# it would have to re-open every *-state.json and recount. See document
+# section 14 (Manual Técnico): the boundary principle requires this pipeline
+# to be honest about what's open, not just what's confirmed.
 # ============================================================
-cat > "$OUT/manifest.json" <<EOF
+json_escape() {
+  printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+}
+
 {
+  cat <<EOF
+{
+  "contract_version": "1.0",
   "generated_by": "spec-package-agent/scripts/assemble-spec-package.sh",
   "generated_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
   "sources": [
@@ -302,9 +319,23 @@ cat > "$OUT/manifest.json" <<EOF
     { "skill": "estimation-agent", "schema": "../.claude/skills/estimation-agent/assets/estimation-state.schema.json", "produces": ["estimation/estimate.md"] },
     { "skill": "proposal-agent", "schema": "../.claude/skills/proposal-agent/assets/proposal-state.schema.json", "produces": ["proposal/commercial-proposal.md"] }
   ],
-  "not_backed": ["architecture/ -- ningún agente produce ADRs todavía, carpeta deliberadamente omitida"]
+  "not_backed": ["architecture/ -- fuera de alcance por diseño: arquitectura y modelo de datos son responsabilidad del SDD consumidor que reciba este spec package, nunca de este pipeline"],
+  "exclusion_summary": [
+EOF
+  n=${#SUMMARY[@]}
+  for i in "${!SUMMARY[@]}"; do
+    line=$(json_escape "${SUMMARY[$i]}")
+    if [ "$i" -lt $((n-1)) ]; then
+      printf '    "%s",\n' "$line"
+    else
+      printf '    "%s"\n' "$line"
+    fi
+  done
+  cat <<EOF
+  ]
 }
 EOF
+} > "$OUT/manifest.json"
 
 # ============================================================
 # Final report

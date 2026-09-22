@@ -1,6 +1,7 @@
 {
+  "contract_version": "1.0",
   "generated_by": "spec-package-agent/scripts/assemble-spec-package.sh",
-  "generated_at": "2026-09-17T04:42:16Z",
+  "generated_at": "2026-09-22T02:40:49Z",
   "sources": [
     { "skill": "discovery-agent", "schema": "../.claude/skills/discovery-agent/assets/discovery-state.schema.json", "produces": ["requirements/business-rules.md"] },
     { "skill": "prd-agent", "schema": "../.claude/skills/prd-agent/assets/prd-state.schema.json", "produces": ["product/prd.md", "product/personas.md"] },
@@ -10,5 +11,16 @@
     { "skill": "estimation-agent", "schema": "../.claude/skills/estimation-agent/assets/estimation-state.schema.json", "produces": ["estimation/estimate.md"] },
     { "skill": "proposal-agent", "schema": "../.claude/skills/proposal-agent/assets/proposal-state.schema.json", "produces": ["proposal/commercial-proposal.md"] }
   ],
-  "not_backed": ["architecture/ -- ningún agente produce ADRs todavía, carpeta deliberadamente omitida"]
+  "not_backed": ["architecture/ -- fuera de alcance por diseño: arquitectura y modelo de datos son responsabilidad del SDD consumidor que reciba este spec package, nunca de este pipeline"],
+  "exclusion_summary": [
+    "product/personas.md: 3 personas",
+    "functional.md: 6 confirmados de 6 candidatos RF",
+    "non-functional.md: 0 confirmados de 0 candidatos RNF",
+    "requirements-state.json: 2 rejected (prd_out_of_scope u otro), 0 blocked -- no incluidos en functional/non-functional.md",
+    "business-rules.md: 3 confirmadas de 5 relevadas (RN-03/RN-04 confirmadas aquí -- fueron excluidas río abajo en requirements, no en discovery)",
+    "user-stories/: 6 historias generadas, 0 RNF skipped (no aplica -- no es un estado 'sin resolver')",
+    "models/: 2 diagramas copiados, 2 bloqueados en UML (class/erd) -- no generados, no incluidos",
+    "estimation/estimate.md: rango 5-8 semanas, incertidumbre medium",
+    "proposal/commercial-proposal.md: copiado desde propuesta.md"
+  ]
 }

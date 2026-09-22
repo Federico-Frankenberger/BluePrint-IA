@@ -4,6 +4,10 @@ ingenieria_requerimientos_agentica.md
 # Tooling cache
 .atl/
 
+# Exported PDF snapshots (regenerados desde el doc vivo, no versionados)
+Manual-Tecnico-Pipeline-BluePrint-IA.pdf
+Manual-de-uso-BluePrint-IA.pdf
+
 # Python
 __pycache__/
 *.pyc
