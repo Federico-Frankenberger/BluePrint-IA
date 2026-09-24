@@ -36,7 +36,7 @@ BluePrint-IA es deliberadamente **independiente de cualquier motor SDD**. Su res
 
 ```
 .
-├── .claude/skills/        # Los 10 skills del pipeline (Discovery → Proposal, más Orchestrator, Spec Package e Impact Analysis)
+├── .claude/skills/        # Los 11 skills del pipeline (Discovery → Proposal, más Orchestrator, Definition of Ready, Spec Package e Impact Analysis)
 ├── state/                 # Estado de máquina por etapa (*-state.json) — fuente de verdad, nunca el LLM
 ├── source/                # Documentos de trabajo legibles por humanos (prd.md, propuesta.md)
 ├── diagrams/               # Diagramas Mermaid generados (*.mmd)
@@ -67,7 +67,7 @@ Ver [AGENTS.md](AGENTS.md) para el registro completo (frases disparadoras y ruta
 | 5. UML/ERD | `uml-agent` |
 | 6. Estimation | `estimation-agent` |
 | 7. Proposal | `proposal-agent` |
-| Transversales | `orchestrator-agent`, `spec-package-agent`, `impact-analysis-agent` |
+| Transversales | `orchestrator-agent`, `definition-of-ready-agent`, `spec-package-agent`, `impact-analysis-agent` |
 
 ## Estado
 

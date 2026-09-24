@@ -1,5 +1,11 @@
 {
   "engagement_type": "own_product",
+  "legacy": {
+    "is_legacy": true,
+    "reason": "Corrida de prueba del modo own_product (Kiosco Stock App) usada para validar el pipeline antes de que existieran priority, coverage y el gate de Definition of Ready (Etapas 2-3 del Plan de Mejora del Pipeline). Validó el flujo own_product de punta a punta, no representa un producto real pendiente de entrega. Ver Plan-de-Mejora-Pipeline.md, punto 11, decisión (a).",
+    "predates_schema_version": null,
+    "marked_at": "2026-09-24"
+  },
   "stakeholders": ["Kiosquero", "Proveedor"],
   "processes": ["Reponer stock", "Pedir mercadería al proveedor"],
   "business_rules": [

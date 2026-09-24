@@ -1,17 +1,25 @@
 {
+  "schema_version": "1.2",
   "stories": [
     {
       "id": "HU-01",
       "actor": "Vendedor",
       "action": "string",
       "benefit": "string",
+      "priority": "must_have | should_have | could_have | wont_have | null",
       "acceptance_criteria": [
-        { "given": "string", "when": "string", "then": "string" }
+        { "type": "happy_path | exception", "given": "string", "when": "string", "then": "string" }
       ],
       "source": "RF-01",
       "open_questions": [
         { "id": "HU-01-OQ-01", "question": "string", "item_ref": "HU-01" }
-      ]
+      ],
+      "no_exception_reason": {
+        "_comment": "Optional. Present ONLY when a stakeholder explicitly confirmed that no exception case applies to this story -- never set by user-stories-agent on its own to satisfy the Definition of Ready gate (that would be fabricating behavior, same discipline as acceptance_criteria itself). `reason` and `stated_by` are required together the moment this object exists: a waiver with either one missing or empty is malformed, and check-definition-of-ready.sh fails closed on it (distinct message from 'no waiver at all') -- it never infers 'no exception was knowable' from silent absence of this object. Scoped per-story: a waiver on one HU never satisfies another HU's gate. If `reason` text may contain a literal `\"` character, note it does NOT survive check-definition-of-ready.sh's/assemble-spec-package.sh's shared `field()` sed extractor (pre-existing limitation, see Plan-de-Mejora-Pipeline.md punto 10 -- same as any other free-text field in this pipeline).",
+        "reason": "string (why no exception case applies to this story) | omit the whole object if not applicable",
+        "stated_by": "string (stakeholder role) -- required, never null; an unconfirmed guess is not a waiver",
+        "source_turn": "number | null"
+      }
     }
   ],
   "skipped": [

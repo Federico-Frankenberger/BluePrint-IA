@@ -1,7 +1,7 @@
 {
   "contract_version": "1.0",
   "generated_by": "spec-package-agent/scripts/assemble-spec-package.sh",
-  "generated_at": "2026-09-22T02:40:49Z",
+  "generated_at": "2026-09-22T20:21:50Z",
   "sources": [
     { "skill": "discovery-agent", "schema": "../.claude/skills/discovery-agent/assets/discovery-state.schema.json", "produces": ["requirements/business-rules.md"] },
     { "skill": "prd-agent", "schema": "../.claude/skills/prd-agent/assets/prd-state.schema.json", "produces": ["product/prd.md", "product/personas.md"] },

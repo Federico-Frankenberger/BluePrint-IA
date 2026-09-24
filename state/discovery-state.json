@@ -1,4 +1,11 @@
 {
+  "engagement_type": "client",
+  "legacy": {
+    "is_legacy": true,
+    "reason": "Corrida real (pedidos para vendedores) usada para validar el pipeline antes de que existieran priority, coverage y el gate de Definition of Ready (Etapas 2-3 del Plan de Mejora del Pipeline). Cumplió su propósito de validar el pipeline, no representa un cliente real pendiente de entrega. Ver Plan-de-Mejora-Pipeline.md, punto 11, decisión (a).",
+    "predates_schema_version": null,
+    "marked_at": "2026-09-24"
+  },
   "stakeholders": ["Administrador", "Vendedor", "Administración"],
   "processes": ["Crear pedido", "Modificar pedido", "Aprobar pedido", "Consultar pedidos"],
   "business_rules": [
@@ -6,28 +13,28 @@
       "id": "RN-01",
       "text": "Un vendedor solo puede modificar sus propios pedidos.",
       "source_turn": 1,
-      "stated_by": null,
+      "stated_by": "Administrador",
       "status": "pending_clarification"
     },
     {
       "id": "RN-02",
       "text": "Un pedido aprobado no puede modificarse.",
       "source_turn": 1,
-      "stated_by": null,
+      "stated_by": "Administrador",
       "status": "confirmed"
     },
     {
       "id": "RN-03",
       "text": "El sistema no debe integrarse con ningún ERP por el momento.",
       "source_turn": 1,
-      "stated_by": null,
+      "stated_by": "Administración",
       "status": "confirmed"
     },
     {
       "id": "RN-04",
       "text": "La facturación electrónica queda fuera de este proyecto; se evaluará en una fase futura.",
       "source_turn": 1,
-      "stated_by": null,
+      "stated_by": "Administración",
       "status": "confirmed"
     },
     {

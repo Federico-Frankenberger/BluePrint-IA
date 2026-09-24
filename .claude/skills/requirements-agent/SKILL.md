@@ -4,7 +4,7 @@ description: "Trigger: requirements agent, generar requisitos, RF RNF, requisito
 license: Apache-2.0
 metadata:
   author: "Federico-Frankenberger"
-  version: "1.2"
+  version: "1.3"
 ---
 
 ## Activation Contract
@@ -18,6 +18,7 @@ Load when the user runs `/requirements-agent`, asks to generate functional/non-f
 - If `state/prd-state.json` exists and a candidate requirement's source rule/process matches an entry in its `out_of_scope`, do not confirm it as a normal RF/RNF — record it in `rejected` with `status: "rejected"` and `reason: "prd_out_of_scope: <item>"`, quoting the exact PRD out-of-scope item. This is a permanent exclusion, not a `blocked` (waiting-on-something) case — never mix the two lists.
 - A rule still `status: pending_clarification` upstream is not rejected — it's `blocked`. Record it in `blocked` with `status: "blocked"` and `reason: "upstream rule still pending_clarification"`, and mirror it as one entry in this file's own `open_questions` (`{id, question, item_ref}`, `item_ref` = the rule id).
 - Classify each requirement as exactly one of `RF` (functional - what the system does) or `RNF` (non-functional - a quality or constraint). Never mix the two in one entry.
+- **Priority is never assigned by judgment.** For each new requirement, look for a `state/discovery-state.json.priorities` entry whose `item` matches this requirement's source rule/process. If found, copy its `priority` verbatim and set `priority_source: "discovery.priorities[n]"`. If no matching entry exists, ask the stakeholder directly (one question, MoSCoW terms) and set `priority_source: "asked_directly"` once answered. Never infer priority from the requirement's wording, its order of appearance, or how it "sounds." A requirement can stay `priority: null` across a run if genuinely unanswered — never guess to avoid leaving it empty.
 - Persist state after every run. Read the existing `state/requirements-state.json` first; add or update by `source`, never duplicate or overwrite from scratch.
 - If `state/discovery-state.json` has zero confirmed rules or processes, do not fabricate requirements - report that Discovery isn't ready yet.
 
@@ -27,7 +28,8 @@ Load when the user runs `/requirements-agent`, asks to generate functional/non-f
 |---|---|
 | No `state/discovery-state.json` in project root | Stop. Tell the user to run `/discovery-agent` first. |
 | No `state/prd-state.json` in project root | Proceed using `state/discovery-state.json` only; note in the final report that the PRD scope gate wasn't applied. |
-| Confirmed rule or process not yet mapped to a requirement, and not in `state/prd-state.json.out_of_scope` | Generate one `RF-##` or `RNF-##`, id assigned per type, `status: "confirmed"`, with its `source`. |
+| Confirmed rule or process not yet mapped to a requirement, and not in `state/prd-state.json.out_of_scope` | Generate one `RF-##` or `RNF-##`, id assigned per type, `status: "confirmed"`, with its `source`, and resolve `priority` per the Hard Rule above. |
+| Requirement generated but no matching `discovery-state.json.priorities` entry found | Ask the stakeholder directly which MoSCoW tier applies; leave `priority: null` until answered — never leave it silently unresolved without having asked. |
 | Confirmed rule or process matches an entry in `state/prd-state.json.out_of_scope` | Do not generate a requirement; record in `rejected` with `status: "rejected"`, `reason: "prd_out_of_scope: <item>"`. |
 | Rule `status: pending_clarification` | Skip it; record in `blocked` with `status: "blocked"` and a reason, and mirror it in `open_questions`. |
 | Discovery state changed since last run (new confirmed rules) | Add only the new requirements; keep existing `RF-##`/`RNF-##` ids stable. |
@@ -41,12 +43,13 @@ Load when the user runs `/requirements-agent`, asks to generate functional/non-f
 5. For everything else, classify `RF` vs `RNF` and draft the requirement text with `status: "confirmed"`.
 6. Skip and record any `pending_clarification` rule in `blocked`, and mirror it in `open_questions`.
 7. Assign the next `RF-##`/`RNF-##` id per type; attach the `source` reference.
-8. Write the full state back to `state/requirements-state.json`.
-9. Report: requirements added (with source), what's `rejected` (PRD-scope) vs `blocked` (waiting on upstream) and why, and the traceability link back to Discovery and PRD.
+8. Resolve `priority` per the Hard Rule above (trace to `discovery-state.json.priorities`, or ask directly).
+9. Write the full state back to `state/requirements-state.json`.
+10. Report: requirements added (with source and priority), what's `rejected` (PRD-scope) vs `blocked` (waiting on upstream) and why, any requirement still `priority: null` pending an answer, and the traceability link back to Discovery and PRD.
 
 ## Output Contract
 
-Each run ends with the updated `state/requirements-state.json` on disk, a short summary of new `RF`/`RNF` entries with their source, and the `rejected`/`blocked` lists when non-empty — keeping PRD-scope exclusions (`rejected`) and upstream-pending items (`blocked`) clearly distinct. On request, output the full file as the handoff artifact for the next pipeline stage (User Stories).
+Each run ends with the updated `state/requirements-state.json` on disk, a short summary of new `RF`/`RNF` entries with their source and priority, and the `rejected`/`blocked` lists when non-empty — keeping PRD-scope exclusions (`rejected`) and upstream-pending items (`blocked`) clearly distinct. On request, output the full file as the handoff artifact for the next pipeline stage (User Stories).
 
 ## References
 

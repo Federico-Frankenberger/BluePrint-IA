@@ -1,10 +1,13 @@
 {
+  "schema_version": "1.1",
   "requirements": [
     {
       "id": "RF-01",
       "type": "RF | RNF",
       "text": "string",
       "source": "RN-01 | proceso: Cargar pedido",
+      "priority": "must_have | should_have | could_have | wont_have | null",
+      "priority_source": "discovery.priorities[n] | asked_directly | null",
       "status": "confirmed"
     }
   ],

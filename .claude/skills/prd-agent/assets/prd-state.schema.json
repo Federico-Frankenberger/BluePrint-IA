@@ -1,14 +1,31 @@
 {
+  "schema_version": "1.2",
+  "_comment": "Extiende la cobertura a las 30 secciones del PRD completo (Manual-de-Analisis-de-Requerimientos.md, sección 24.2). Regla de diseño: 'referenciado, no autocontenido' -- un hecho vive en un solo lugar. Los campos nuevos de este archivo son SOLO para contenido que ninguna otra skill releva todavía (síntesis propia de prd-agent); todo lo que otra skill ya releva se guarda en `references` como id/archivo+campo, nunca como copia del texto. source/prd.md resuelve esas referencias a texto legible en cada corrida -- el estado nunca duplica el contenido fuente.",
   "engagement_type": "client | own_product",
-  "vision": "string",
-  "objectives": ["string"],
+
+  "executive_summary": "string | null (síntesis de una página -- manual §24.2.1; null si todavía no se sintetizó)",
+  "problem_statement": "string | null (la necesidad de negocio en términos de problema, no de solución -- manual §24.2.2; se redacta a partir de discovery, no se pregunta aparte)",
+  "context": "string | null (negocio/mercado/situación actual que enmarca el proyecto -- manual §24.2.3)",
+  "vision": "string (visión general del producto -- histórico de este skill, se mantiene además de executive_summary/problem_statement, no lo reemplaza)",
+  "objectives": ["string (manual §24.2.4 -- ya existía)"],
+  "non_goals": [
+    {
+      "item": "string (algo que el producto explícitamente NO busca resolver, a nivel estratégico -- manual §24.2.5)",
+      "source": "RN-01 | stakeholder: Vendedor | proceso: Crear pedido"
+    }
+  ],
+
   "personas": [
     {
       "id": "PER-01",
       "name": "string",
-      "source": "stakeholder: Vendedor"
+      "source": "stakeholder: Vendedor",
+      "context": "string | null (situación/entorno de uso -- manual §24.2.8; null si no se preguntó, nunca inventado)",
+      "needs": "string | null (necesidades relevantes para el producto | null)",
+      "technical_level": "string | null (nivel de conocimiento técnico declarado -- ej. 'bajo', 'usa el celular a diario pero no apps de gestión' | null)"
     }
   ],
+
   "in_scope": [
     {
       "item": "string",
@@ -21,8 +38,121 @@
       "reason": "string"
     }
   ],
-  "success_criteria": ["string"],
+
+  "constraints": [
+    {
+      "_comment": "Manual §24.2.19 -- Restricciones. Límite de negocio impuesto EXTERNAMENTE al proyecto (presupuesto, plazo, tecnología mandatada por el cliente, marco regulatorio). Nunca una decisión de diseño propia del equipo (ver §25.1 -- eso pertenece al SDD, no al PRD) ni algo inferido: solo lo que un stakeholder declaró como límite.",
+      "item": "string",
+      "source": "RN-01 | stakeholder: Administrador"
+    }
+  ],
+
+  "mvp_scope": [
+    {
+      "_comment": "Manual §24.2.25. Cada entrada DEBE existir tal cual en `in_scope` -- mvp_scope nunca introduce un ítem nuevo, solo marca cuáles de los ya confirmados son el mínimo viable.",
+      "item": "string (debe coincidir con un item.item de in_scope)",
+      "source": "in_scope: Crear pedido"
+    }
+  ],
+
+  "success_criteria": ["string (manual §24.2.24 -- ya existía)"],
+
+  "changelog": [
+    {
+      "_comment": "Manual §24.2.29. prd-agent agrega una entrada cada corrida en la que el contenido de source/prd.md cambió de forma material (no se agrega una entrada si la corrida no modificó nada).",
+      "version": "string (ej. '1.1')",
+      "date": "YYYY-MM-DD",
+      "author": "prd-agent",
+      "reason": "string (qué cambió y por qué -- ej. 'agregadas 3 reglas confirmadas a in_scope')"
+    }
+  ],
+
   "open_questions": [
     { "id": "OQ-01", "question": "string", "item_ref": "RN-01 | proceso: Crear pedido | null" }
-  ]
+  ],
+
+  "references": {
+    "_comment": "Secciones del manual (§24.2) cuya fuente de verdad es OTRA skill. Nunca se copia el texto acá -- solo el id/archivo+campo necesario para que source/prd.md lo resuelva en cada corrida. `ids` vacío + `note` explicando el gap es válido y esperado cuando todavía no hay nada confirmado río arriba; nunca se deja `ids` vacío en silencio sin `note`. La sección 7 (Usuarios) del manual no tiene entrada propia acá: se renderiza a partir de `personas` (sección 8, mismo dato). La sección 30 (Referencias y trazabilidad) tampoco: se arma en source/prd.md a partir de todos los `source`/`ids` ya presentes en este archivo -- guardar un índice aparte duplicaría lo que ya está.",
+
+    "stakeholders": {
+      "_manual": "§24.2.6",
+      "file": "state/discovery-state.json",
+      "field": "stakeholders"
+    },
+    "functional_requirements": {
+      "_manual": "§24.2.10",
+      "file": "state/requirements-state.json",
+      "field": "requirements[type=RF, status=confirmed]"
+    },
+    "processes": {
+      "_manual": "§24.2.11",
+      "file": "state/discovery-state.json",
+      "field": "as_is_process, to_be_process"
+    },
+    "business_rules": {
+      "_manual": "§24.2.12",
+      "file": "state/discovery-state.json",
+      "field": "business_rules[status=confirmed]"
+    },
+    "data_entities": {
+      "_manual": "§24.2.13",
+      "file": "state/discovery-state.json",
+      "field": "data_points[status=confirmed]",
+      "note": "string | null -- solo si el array existe pero no tiene ninguna entrada confirmed todavía (ver Decision Gates); nunca se cita por juicio propio contra business_rules/RF."
+    },
+    "integrations": {
+      "_manual": "§24.2.14",
+      "file": "state/discovery-state.json",
+      "field": "integrations[status=confirmed]",
+      "note": "string | null -- solo si el array existe pero no tiene ninguna entrada confirmed todavía."
+    },
+    "non_functional_requirements": {
+      "_manual": "§24.2.15",
+      "file": "state/requirements-state.json",
+      "field": "requirements[type=RNF, status=confirmed]"
+    },
+    "security": {
+      "_manual": "§24.2.16",
+      "file": "state/discovery-state.json",
+      "field": "security_items[status=confirmed]",
+      "note": "string | null -- solo si el array existe pero no tiene ninguna entrada confirmed todavía. No confundir con requisitos RNF generales, solo lo específico de auth/autorización/datos sensibles/auditoría."
+    },
+    "reports": {
+      "_manual": "§24.2.17",
+      "file": "state/discovery-state.json",
+      "field": "reports[status=confirmed]",
+      "note": "string | null -- solo si el array existe pero no tiene ninguna entrada confirmed todavía."
+    },
+    "notifications": {
+      "_manual": "§24.2.18",
+      "file": "state/discovery-state.json",
+      "field": "notifications[status=confirmed]",
+      "note": "string | null -- solo si el array existe pero no tiene ninguna entrada confirmed todavía."
+    },
+    "dependencies": {
+      "_manual": "§24.2.20",
+      "file": "state/estimation-state.json",
+      "field": "global_dependencies"
+    },
+    "risks": {
+      "_manual": "§24.2.21",
+      "file": "state/estimation-state.json",
+      "field": "global_risks"
+    },
+    "assumptions": {
+      "_manual": "§24.2.22",
+      "file": "state/estimation-state.json",
+      "field": "global_assumptions"
+    },
+    "prioritization": {
+      "_manual": "§24.2.23",
+      "files": ["state/requirements-state.json", "state/user-stories-state.json"],
+      "field": "priority (por RF/RNF en requirements, por HU en user-stories)"
+    }
+  },
+
+  "not_in_prd_scope": {
+    "_comment": "Secciones del manual §24.2 que este PRD no cubre, con el motivo -- documentado acá para que quede explícito por qué no hay campo ni referencia, en vez de que parezca un olvido.",
+    "glossary": "§24.2.28 -- reservado para spec-package/product/glossary.md; ninguna skill del pipeline captura términos de glosario todavía (mismo principio que `not_backed` en manifest.json de spec-package-agent). Cuando exista una skill que lo releve, se referencia desde acá, nunca se duplica en prd-state.json."
+  }
 }

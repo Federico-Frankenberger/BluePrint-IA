@@ -4,7 +4,7 @@ description: "Trigger: orchestrator agent, orquestador, qué sigue, próximo pas
 license: Apache-2.0
 metadata:
   author: "Federico-Frankenberger"
-  version: "1.0"
+  version: "1.1"
 ---
 
 ## Activation Contract
@@ -24,6 +24,8 @@ Load when the user runs `/orchestrator-agent`, asks what to run next in the pipe
 | Script reports a missing stage | Relay "Próximo paso: ejecutar `<skill>`" verbatim. |
 | Script reports all 7 present, no staleness | Relay "Pipeline completo" verbatim. |
 | Script reports one or more stages "potentially stale" | Relay the staleness note verbatim; do not attempt to resolve it or guess which fields changed. |
+| Script reports `Definition of Ready: FAILED` | Relay it verbatim; tell the user to run `/definition-of-ready-agent` for the itemized detail — this skill never expands the reasons itself, that's `definition-of-ready-agent`'s report. |
+| Script reports `Definition of Ready: LEGACY` | Relay it verbatim; tell the user the run is frozen (not exempt) and to run `/definition-of-ready-agent` for the motivo/accionable detail. Never treat `LEGACY` as equivalent to `PASSED` — it still blocks `spec-package-agent`. |
 | Script exits with an error | Relay the raw error; do not fall back to manually inspecting files and reasoning about state yourself. |
 
 ## Execution Steps
@@ -34,9 +36,10 @@ Load when the user runs `/orchestrator-agent`, asks what to run next in the pipe
 
 ## Output Contract
 
-Each run ends with the script's plain-text table (stage | status | note) and its closing line (next step or "Pipeline completo"), relayed verbatim, plus the staleness caveat line when applicable. This skill never edits any state file.
+Each run ends with the script's plain-text table (stage | status | note), its closing line (next step or "Pipeline completo"), the staleness caveat when applicable, and the Definition of Ready verdict line, all relayed verbatim. This skill never edits any state file.
 
 ## References
 
 - `../../../ingenieria_requerimientos_agentica.md` -- section 12 (Orquestador) defines this skill's scope and its explicit non-goal: it does not replace the Impact Analysis Agent (section 18), which reasons about *what* is affected by a change, not just *that* something might be stale.
+- `../definition-of-ready-agent/SKILL.md` -- this skill's status check shells out to that skill's deterministic script; the full itemized failure detail lives there, not here.
 - `scripts/check-pipeline-state.sh` -- the deterministic logic this skill wraps; the skill itself adds no judgment on top of it.

@@ -1,14 +1,20 @@
 {
+  "schema_version": "1.1",
+  "_comment": "Riesgo/Supuesto/Dependencia son tres cosas distintas (Manual, punto 28): Riesgo = algo que podría pasar y afectaría el proyecto. Supuesto = algo que se asume verdadero sin confirmar todavía. Dependencia = algo externo que debe existir o suceder para que el trabajo avance. Nunca colapsarlos en un solo campo.",
   "story_estimates": [
     {
       "source": "HU-01",
       "tasks": [
         { "area": "backend | api | db | frontend | auth | testing", "complexity": "low | medium | high" }
       ],
-      "assumptions": ["string"]
+      "risks": ["string"],
+      "assumptions": ["string"],
+      "dependencies": ["string"]
     }
   ],
+  "global_risks": ["string"],
   "global_assumptions": ["string"],
+  "global_dependencies": ["string"],
   "preliminary_estimate": {
     "duration_weeks": { "min": 0, "max": 0 },
     "team": "string",

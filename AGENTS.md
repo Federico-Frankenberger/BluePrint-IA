@@ -12,5 +12,6 @@ Registry of project-scoped Claude Code skills for this repo.
 | estimation-agent | `.claude/skills/estimation-agent/SKILL.md` | estimation agent, estimar, estimación preliminar, iniciar estimation |
 | proposal-agent | `.claude/skills/proposal-agent/SKILL.md` | proposal agent, generar propuesta, propuesta comercial, iniciar proposal |
 | orchestrator-agent *(cross-cutting, not a pipeline stage)* | `.claude/skills/orchestrator-agent/SKILL.md` | orchestrator agent, orquestador, qué sigue, próximo paso del pipeline, estado del pipeline |
+| definition-of-ready-agent *(cross-cutting, not a pipeline stage)* | `.claude/skills/definition-of-ready-agent/SKILL.md` | definition of ready, DoR, está listo, chequear listo para SDD, verificar antes de armar el spec package |
 | spec-package-agent *(cross-cutting, not a pipeline stage)* | `.claude/skills/spec-package-agent/SKILL.md` | spec package agent, armar spec package, ensamblar spec package, generar manifest |
 | impact-analysis-agent *(cross-cutting, not a pipeline stage)* | `.claude/skills/impact-analysis-agent/SKILL.md` | impact analysis agent, análisis de impacto, change request, cambio post-aprobación, cotizar cambio |

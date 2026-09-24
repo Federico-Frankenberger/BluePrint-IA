@@ -84,3 +84,16 @@ fi
 if [ "$any_stale" = "1" ]; then
   echo "Nota: hay etapas potencialmente desactualizadas respecto de su upstream. Esto es solo informativo -- la re-propagación automática todavía no está implementada (responsabilidad futura del Impact Analysis Agent, sección 18 del documento)."
 fi
+
+echo ""
+echo "Definition of Ready:"
+DOR_SCRIPT="$ROOT/.claude/skills/definition-of-ready-agent/scripts/check-definition-of-ready.sh"
+if [ ! -f "$ROOT/state/user-stories-state.json" ]; then
+  echo "  no evaluable todavía -- falta state/user-stories-state.json"
+elif [ -f "$DOR_SCRIPT" ]; then
+  DOR_OUTPUT=$(bash "$DOR_SCRIPT" "$ROOT" 2>&1 || true)
+  DOR_VERDICT=$(printf '%s\n' "$DOR_OUTPUT" | grep "^VEREDICTO:" | sed 's/VEREDICTO: //')
+  echo "  ${DOR_VERDICT:-desconocido} -- correr /definition-of-ready-agent para el detalle completo"
+else
+  echo "  script de definition-of-ready-agent no encontrado"
+fi

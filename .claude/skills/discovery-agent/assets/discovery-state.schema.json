@@ -1,11 +1,121 @@
 {
+  "schema_version": "1.3",
   "engagement_type": "client | own_product",
+  "legacy": {
+    "_comment": "Optional. Present only when a run is explicitly frozen instead of reopened (see Plan-de-Mejora-Pipeline.md punto 11) -- e.g. a run that predates `priority`/`coverage`/the Definition of Ready gate and validated the pipeline itself, not a real deliverable. discovery-agent NEVER sets this field on its own; it is only added by explicit maintainer decision, editing this file directly. A consumer (check-definition-of-ready.sh, orchestrator-agent) MUST treat this object as NOT legacy -- fail closed to the normal gate -- unless `is_legacy` is literally `true` AND `reason` AND `marked_at` are both non-empty; a partial or malformed object is never silently exempted from the gate.",
+    "is_legacy": "true | false (omit the whole `legacy` object instead of setting this false)",
+    "reason": "string -- why this run is frozen instead of reopened",
+    "predates_schema_version": "string (schema_version this run predates) | null (predates schema_version tracking itself -- no schema_version field at all)",
+    "marked_at": "YYYY-MM-DD"
+  },
+  "coverage": {
+    "_comment": "20 categorías del Manual-de-Analisis-de-Requerimientos.md, sección 9 (A-T). `required: true` = obligatoria, bloquea el cierre del discovery hasta touched|not_applicable con desarrollo completo. `required: false` = opcional, se resuelve con una pregunta corta de gating; basta touched|not_applicable para cerrar. `note` es obligatorio cuando `status` es `not_applicable` — nunca se asume en silencio.",
+    "A_contexto_general":          { "status": "not_asked | touched | not_applicable", "required": true,  "note": "string | null" },
+    "B_problema_actual":           { "status": "not_asked", "required": true,  "note": null },
+    "C_objetivos_negocio":         { "status": "not_asked", "required": true,  "note": null },
+    "D_stakeholders":              { "status": "not_asked", "required": true,  "note": null },
+    "E_usuarios":                  { "status": "not_asked", "required": true,  "note": null },
+    "F_procesos_negocio":          { "status": "not_asked", "required": true,  "note": null },
+    "G_funcionalidades":           { "status": "not_asked", "required": true,  "note": null },
+    "H_datos":                     { "status": "not_asked", "required": true,  "note": null },
+    "I_reglas_negocio":            { "status": "not_asked", "required": true,  "note": null },
+    "J_casos_excepcionales":       { "status": "not_asked", "required": true,  "note": null },
+    "K_integraciones":             { "status": "not_asked", "required": false, "note": null },
+    "L_seguridad":                 { "status": "not_asked", "required": false, "note": null },
+    "M_requisitos_no_funcionales": { "status": "not_asked", "required": false, "note": null },
+    "N_infraestructura":           { "status": "not_asked", "required": false, "note": null },
+    "O_regulaciones":              { "status": "not_asked", "required": false, "note": null },
+    "P_reportes":                  { "status": "not_asked", "required": false, "note": null },
+    "Q_notificaciones":            { "status": "not_asked", "required": false, "note": null },
+    "R_alcance":                   { "status": "not_asked", "required": true,  "note": null },
+    "S_prioridades":               { "status": "not_asked", "required": true,  "note": null },
+    "T_futuro":                    { "status": "not_asked", "required": false, "note": null }
+  },
+  "as_is_process": [
+    {
+      "step": "string",
+      "actor": "string (rol/stakeholder en `client`; 'usuario objetivo' en `own_product`)",
+      "herramienta_actual": "string (cómo lo resuelven hoy: Excel, WhatsApp, papel, memoria, nada)",
+      "problema_detectado": "string | null"
+    }
+  ],
+  "to_be_process": [
+    {
+      "step": "string",
+      "actor": "string",
+      "cambio_respecto_as_is": "string"
+    }
+  ],
+  "scope": {
+    "_comment": "Poblado por la categoría R (Alcance). Nunca meter esto en business_rules — un ítem de alcance no es una regla de comportamiento del sistema.",
+    "in_scope": ["string"],
+    "out_of_scope": ["string"],
+    "future": ["string (fase futura, explícitamente fuera de este alcance pero no descartado)"]
+  },
+  "priorities": [
+    {
+      "_comment": "Poblado por la categoría S (Prioridades). Nunca meter esto en business_rules. requirements-agent traza el `priority` de cada RF/RNF contra este array por `item`; solo pregunta de nuevo si no encuentra una entrada que le corresponda.",
+      "item": "string (referencia a un proceso, regla o funcionalidad concreta, no un RF-## — todavía no existen en esta etapa)",
+      "priority": "must_have | should_have | could_have | wont_have",
+      "stated_by": "string (stakeholder role) | null"
+    }
+  ],
   "stakeholders": ["string"],
   "processes": ["string"],
   "business_rules": [
     {
       "id": "RN-01",
       "text": "string",
+      "source_turn": 1,
+      "stated_by": "string (stakeholder role from `stakeholders`) | null",
+      "status": "confirmed | pending_clarification"
+    }
+  ],
+  "data_points": [
+    {
+      "_comment": "Poblado por la categoría H (Datos). Mismo shape y misma disciplina que business_rules (nunca inventar, stated_by obligatorio cuando el hablante es claro, pending_clarification mientras haya algo sin resolver). prd-agent referencia este array 1:1 desde references.data_entities -- nunca lo duplica.",
+      "id": "DAT-01",
+      "text": "string (una entidad/campo/regla de dato concreta: qué se guarda, obligatoriedad, unicidad, formato de dato sensible, retención, purga, auditoría de cambios)",
+      "source_turn": 1,
+      "stated_by": "string (stakeholder role from `stakeholders`) | null",
+      "status": "confirmed | pending_clarification"
+    }
+  ],
+  "integrations": [
+    {
+      "_comment": "Poblado por la categoría K (Integraciones). Mismo shape y misma disciplina que business_rules. prd-agent referencia este array 1:1 desde references.integrations.",
+      "id": "INT-01",
+      "text": "string (sistema externo, qué se envía/recibe, quién inicia la comunicación, comportamiento ante falla, autenticación, límites de uso)",
+      "source_turn": 1,
+      "stated_by": "string (stakeholder role from `stakeholders`) | null",
+      "status": "confirmed | pending_clarification"
+    }
+  ],
+  "security_items": [
+    {
+      "_comment": "Poblado por la categoría L (Seguridad). Mismo shape y misma disciplina que business_rules. prd-agent referencia este array 1:1 desde references.security. No confundir con requisitos RNF generales -- solo lo específico de auth/autorización/datos sensibles/auditoría.",
+      "id": "SEC-01",
+      "text": "string (mecanismo de autenticación, doble factor, información sensible, qué queda auditado, qué pasa con el acceso al desvincularse un usuario)",
+      "source_turn": 1,
+      "stated_by": "string (stakeholder role from `stakeholders`) | null",
+      "status": "confirmed | pending_clarification"
+    }
+  ],
+  "reports": [
+    {
+      "_comment": "Poblado por la categoría P (Reportes y métricas). Mismo shape y misma disciplina que business_rules. prd-agent referencia este array 1:1 desde references.reports.",
+      "id": "REP-01",
+      "text": "string (qué reporte, con qué frecuencia se consulta, quién lo recibe, si necesita filtro/exportación)",
+      "source_turn": 1,
+      "stated_by": "string (stakeholder role from `stakeholders`) | null",
+      "status": "confirmed | pending_clarification"
+    }
+  ],
+  "notifications": [
+    {
+      "_comment": "Poblado por la categoría Q (Notificaciones y comunicaciones). Mismo shape y misma disciplina que business_rules. prd-agent referencia este array 1:1 desde references.notifications.",
+      "id": "NOT-01",
+      "text": "string (evento que dispara la notificación, medio de envío, qué pasa si falla el envío, si el usuario puede configurar qué recibe)",
       "source_turn": 1,
       "stated_by": "string (stakeholder role from `stakeholders`) | null",
       "status": "confirmed | pending_clarification"
